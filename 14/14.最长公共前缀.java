@@ -48,7 +48,8 @@
 // @lc code=start
 class Solution {
     public String longestCommonPrefix(String[] strs) {
-        int end = 0;
+        int end = -1;
+        if(strs.length==1) return strs[0];
         int minlength = strs[0].length();
         for(String item:strs){
             minlength = Math.min(minlength, item.length());
@@ -56,15 +57,15 @@ class Solution {
         for(int i=0;i<minlength;i++){
             for (int k=0;k<strs.length-1;k++) {
                 if(strs[k].charAt(i)!=strs[k+1].charAt(i)){
-                     break;
+                     return strs[0].substring(0,end+1);
                 }
                 else{
-                    if(k+1==strs.length-1)
+                    if(k+2==strs.length)
                         end=i;
                 }
             }
         }
-        return strs[0].substring(0,end);
+        return strs[0].substring(0,end+1);
     }
 }
 // @lc code=end
